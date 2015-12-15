@@ -3,7 +3,9 @@ using System.Collections;
 
 public class MasterCube : MonoBehaviour {
 
-	
+	//Master Cube spawning behaviour
+	//Spawns Cube clones using relative ship position, draws vectors around them using Vectrosity
+	//Despawns cubes after a certain period of time.
 
 
 	// Use this for initialization
