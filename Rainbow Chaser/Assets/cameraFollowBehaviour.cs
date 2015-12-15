@@ -15,6 +15,6 @@ public class cameraFollowBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 }
