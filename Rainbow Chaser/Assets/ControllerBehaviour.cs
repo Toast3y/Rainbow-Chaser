@@ -7,7 +7,8 @@ public class ControllerBehaviour : MonoBehaviour {
 	GameObject ship;
 	Animator animator;
 
-	public float moveSpeed = 1.0f;
+	public GameObject animationObject;
+	public float moveSpeed = 2.5f;
 
 
 	// Use this for initialization
@@ -15,19 +16,21 @@ public class ControllerBehaviour : MonoBehaviour {
 		//Script will act on only the object it is attached to, to allow reuse of code
 		ship = this.gameObject;
 
-		animator = GetComponent<Animator>();
+		animator = animationObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 
-		if (Input.GetAxis("Mouse ScrollWheel") < 0 && ship.transform.position.x < 18.0f){
-			//Moves ship downwards
+		if (Input.GetAxis("Mouse ScrollWheel") < 0 && ship.transform.position.x < 17.0f){
+			//Moves ship downwards (to the right)
+			animator.Play("bankRight");
 			ship.transform.Translate(moveSpeed, 0 , 0);
 		}
-		else if (Input.GetAxis("Mouse ScrollWheel") > 0 && ship.transform.position.x > -8.0f) {
-			//Moves ship upwards
+		else if (Input.GetAxis("Mouse ScrollWheel") > 0 && ship.transform.position.x > -7.0f) {
+			//Moves ship upwards (to the left)
+			animator.Play("bankLeft");
 			ship.transform.Translate(-moveSpeed, 0, 0);
 		}
 	}
