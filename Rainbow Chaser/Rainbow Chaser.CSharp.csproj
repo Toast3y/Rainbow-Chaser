@@ -73,5 +73,8 @@
     <Compile Include="Assets\MovementBehaviour.cs" />
     <Compile Include="Assets\cameraFollowBehaviour.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
