@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MovementBehaviour : MonoBehaviour {
@@ -17,6 +18,8 @@ public class MovementBehaviour : MonoBehaviour {
 	public GameObject Cube;
 
 	private int cubesMade;
+	private bool deathState = false;
+	private float deathCounter = 0.0f;
 	
 
 	// Use this for initialization
@@ -29,7 +32,14 @@ public class MovementBehaviour : MonoBehaviour {
 		//Move ship to the right according to game speed
 		transform.Translate(0, 0, speed * Time.deltaTime);
 
-		
+		//Check if dead. If dead, transition to main menu after 5 seconds
+		if (deathState) {
+			deathCounter = deathCounter + Time.deltaTime;
+
+			if (deathCounter > 5.0f) {
+				SceneManager.LoadScene("Menu");
+			}
+		}
 
 		//Check to see if another block should be made
 		var framesPassed = Time.frameCount % (cubeFrequency / speed);
@@ -55,5 +65,10 @@ public class MovementBehaviour : MonoBehaviour {
 
 			newcube.transform.position = newPos;
 		}
+	}
+
+
+	public void deathTrigger() {
+		deathState = true;
 	}
 }

@@ -164,6 +164,13 @@ public class ControllerBehaviour : MonoBehaviour {
 			//Play destroy animations
 			GameObject kaboom = (GameObject)Instantiate(explosion, ship.transform.position, ship.transform.rotation);
 			sfx.Play();
+
+			//Get reference to MovementBehaviour attached to governing object
+			//This is done as this layer and others below it will be destroyed
+			//Therefore ending the game has to occur in the hierarchy layer above this one.
+			MovementBehaviour reference = upperLayer.GetComponent<MovementBehaviour>();
+			reference.deathTrigger();
+
 			//Destroy the ship
 			Destroy(ship);
 			Destroy(col.gameObject);
