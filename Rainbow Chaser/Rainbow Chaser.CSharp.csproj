@@ -63,20 +63,14 @@
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
-    <Reference Include="Vectrosity">
-      <HintPath>Assets\Plugins\Vectrosity\Vectrosity.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ControllerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\CubeSpawner.cs" />
-    <Compile Include="Assets\Scripts\MasterCube.cs" />
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MovementBehaviour.cs" />
     <Compile Include="Assets\Scripts\RandomMove.cs" />
+    <Compile Include="Assets\Scripts\RotateSlowly.cs" />
     <Compile Include="Assets\Scripts\SelfDestructSequence.cs" />
-    <Compile Include="Assets\Scripts\ShapeDrawingManager.cs" />
-    <Compile Include="Assets\Scripts\cameraFollowBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />

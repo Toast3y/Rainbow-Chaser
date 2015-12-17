@@ -69,7 +69,10 @@ public class MovementBehaviour : MonoBehaviour {
 			GameObject newcube = GameObject.Instantiate(Cube);
 
 			Vector3 newPos = new Vector3(Random.Range(lowerBound, upperBound) ,5.0f,ship.transform.position.z + 60.0f);
+			Quaternion newRot = Random.rotation;
 			newcube.AddComponent(typeof(SelfDestructSequence));
+
+
 
 			
 
@@ -81,6 +84,7 @@ public class MovementBehaviour : MonoBehaviour {
 			}
 
 			newcube.transform.position = newPos;
+			newcube.transform.rotation = newRot;
 
 
 			//Spawns new cube right beside old cube at periodic intervals
