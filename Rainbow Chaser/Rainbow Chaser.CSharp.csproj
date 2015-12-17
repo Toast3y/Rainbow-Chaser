@@ -68,13 +68,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ControllerBehaviour.cs" />
-    <Compile Include="Assets\MasterCube.cs" />
-    <Compile Include="Assets\MovementBehaviour.cs" />
-    <Compile Include="Assets\cameraFollowBehaviour.cs" />
+    <Compile Include="Assets\Scripts\ControllerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\CubeSpawner.cs" />
+    <Compile Include="Assets\Scripts\MasterCube.cs" />
+    <Compile Include="Assets\Scripts\MovementBehaviour.cs" />
+    <Compile Include="Assets\Scripts\SelfDestructSequence.cs" />
+    <Compile Include="Assets\Scripts\cameraFollowBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
+    <None Include="Assets\Scripts\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
