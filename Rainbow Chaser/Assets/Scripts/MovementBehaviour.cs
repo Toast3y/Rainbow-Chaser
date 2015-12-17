@@ -6,10 +6,10 @@ public class MovementBehaviour : MonoBehaviour {
 
 	//Determines starting game speed
 	public float speed = 5.0f;
-	public float speedOT = 0.005f;
+	public float speedOT = 0.025f;
 	public float cubeFrequencyOT = 1.0f;
 	public int cubesMadeOT = 50;
-	public int difficultyThreshold = 0;
+	public int difficultyThreshold = 150;
 
 	//Determines frequency of cube spawns
 	public float cubeFrequency = 360.0f;
@@ -90,7 +90,7 @@ public class MovementBehaviour : MonoBehaviour {
 			//Spawns new cube right beside old cube at periodic intervals
 			//Collision detection on cubes can cause the cubes to move around in unique ways. This code encourages this by spawning a cube beside it
 			//Discovered by a bug that occasionally spawns two cubes inside one another
-			if (Random.Range(0, 100) < 15) {
+			if (Random.Range(0, 100) < 10) {
 				GameObject sideCube = GameObject.Instantiate(Cube);
 				sideCube.AddComponent(typeof(SelfDestructSequence));
 				sideCube.transform.position = newPos;
