@@ -9,6 +9,7 @@ public class MovementBehaviour : MonoBehaviour {
 	public float speedOT = 0.005f;
 	public float cubeFrequencyOT = 1.0f;
 	public int cubesMadeOT = 50;
+	public int difficultyThreshold = 0;
 
 	//Determines frequency of cube spawns
 	public float cubeFrequency = 360.0f;
@@ -16,6 +17,7 @@ public class MovementBehaviour : MonoBehaviour {
 	public float lowerBound = -7.0f;
 	public GameObject ship;
 	public GameObject Cube;
+	//public GameObject VectorCanvas;
 
 	private int cubesMade;
 	private bool deathState = false;
@@ -51,8 +53,14 @@ public class MovementBehaviour : MonoBehaviour {
 			speed = speed + speedOT;
 			cubesMade++;
 
+			//Draw cube vectors on screen if enough cubes have spawned
+			//if (cubesMade % cubesMadeOT / 2 == 0) {
+			//	ShapeDrawingManager reference = VectorCanvas.GetComponent<ShapeDrawingManager>();
+			//	reference.CallForShapes();
+			//}
 
-			//If enough cubes have spawned, reduce frequency
+
+			//If enough cubes have spawned, reduce frequency to increase spawn rate, up to 270
 			if (cubesMade % cubesMadeOT == 0 && cubeFrequency > 270.0f) {
 				cubeFrequency = cubeFrequency - cubeFrequencyOT;
 			}
@@ -62,6 +70,12 @@ public class MovementBehaviour : MonoBehaviour {
 
 			Vector3 newPos = new Vector3(Random.Range(lowerBound, upperBound) ,5.0f,ship.transform.position.z + 60.0f);
 			newcube.AddComponent(typeof(SelfDestructSequence));
+
+			//Adds difficulty by allowing cubes to move after they have spawned.
+			//Only adds it to certain cubes, to maintain surprise.
+			if ((cubesMade > difficultyThreshold) && (Random.Range(0,100) < 34)) {
+				newcube.AddComponent(typeof(RandomMove));
+			}
 
 			newcube.transform.position = newPos;
 		}

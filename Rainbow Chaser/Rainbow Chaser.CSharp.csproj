@@ -68,14 +68,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MenuScript.cs" />
     <Compile Include="Assets\Scripts\ControllerBehaviour.cs" />
     <Compile Include="Assets\Scripts\CubeSpawner.cs" />
     <Compile Include="Assets\Scripts\MasterCube.cs" />
+    <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MovementBehaviour.cs" />
+    <Compile Include="Assets\Scripts\RandomMove.cs" />
     <Compile Include="Assets\Scripts\SelfDestructSequence.cs" />
+    <Compile Include="Assets\Scripts\ShapeDrawingManager.cs" />
     <Compile Include="Assets\Scripts\cameraFollowBehaviour.cs" />
-    <Compile Include="Assets\ShapeDrawingManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
