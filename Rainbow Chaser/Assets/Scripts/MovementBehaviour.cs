@@ -71,6 +71,9 @@ public class MovementBehaviour : MonoBehaviour {
 			Vector3 newPos = new Vector3(Random.Range(lowerBound, upperBound) ,5.0f,ship.transform.position.z + 60.0f);
 			newcube.AddComponent(typeof(SelfDestructSequence));
 
+			
+
+
 			//Adds difficulty by allowing cubes to move after they have spawned.
 			//Only adds it to certain cubes, to maintain surprise.
 			if ((cubesMade > difficultyThreshold) && (Random.Range(0,100) < 34)) {
@@ -78,6 +81,16 @@ public class MovementBehaviour : MonoBehaviour {
 			}
 
 			newcube.transform.position = newPos;
+
+
+			//Spawns new cube right beside old cube at periodic intervals
+			//Collision detection on cubes can cause the cubes to move around in unique ways. This code encourages this by spawning a cube beside it
+			//Discovered by a bug that occasionally spawns two cubes inside one another
+			if (Random.Range(0, 100) < 15) {
+				GameObject sideCube = GameObject.Instantiate(Cube);
+				sideCube.AddComponent(typeof(SelfDestructSequence));
+				sideCube.transform.position = newPos;
+			}
 		}
 	}
 
