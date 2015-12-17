@@ -7,6 +7,9 @@ public class ControllerBehaviour : MonoBehaviour {
 	GameObject ship;
 	Animator animator;
 
+	public GameObject explosion;
+	public AudioSource sfx;
+	public GameObject upperLayer;
 	public GameObject animationObject;
 	public float moveSpeed = 3.0f;
 	public float lerpSpeed = 10.0f;
@@ -158,7 +161,12 @@ public class ControllerBehaviour : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		//Destroys the ship if it collides with a cube
 		if (col.gameObject.name == "Cube(Clone)") {
+			//Play destroy animations
+			GameObject kaboom = (GameObject)Instantiate(explosion, ship.transform.position, ship.transform.rotation);
+			sfx.Play();
+			//Destroy the ship
 			Destroy(ship);
+			Destroy(col.gameObject);
 		}
 	}
 
