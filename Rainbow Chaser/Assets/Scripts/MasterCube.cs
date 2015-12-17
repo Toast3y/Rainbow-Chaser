@@ -15,14 +15,35 @@ public class MasterCube : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		//Generate position in game world according to player and set it
 
 		//Draw vectors in vectrosity according to cube translation
 		var cubeLinePoints = new List<Vector3>() { new Vector3(-1.5f, 1.5f, -1.5f), new Vector3(-1.5f, 1.5f, 1.5f), new Vector3(1.5f, 1.5f, 1.5f), new Vector3(-1.5f, 1.5f, 1.5f), new Vector3(1.5f, 1.5f, -1.5f), new Vector3(1.5f, 1.5f, 1.5f), new Vector3(1.5f, 1.5f, -1.5f), new Vector3(-1.5f, 1.5f, -1.5f), new Vector3(1.5f, -1.5f, -1.5f), new Vector3(1.5f, 1.5f, -1.5f), new Vector3(-1.5f, 1.5f, -1.5f), new Vector3(-1.5f, -1.5f, -1.5f), new Vector3(-1.5f, -1.5f, 1.5f), new Vector3(-1.5f, 1.5f, 1.5f), new Vector3(1.5f, 1.5f, 1.5f), new Vector3(1.5f, -1.5f, 1.5f), new Vector3(-1.5f, -1.5f, 1.5f), new Vector3(-1.5f, -1.5f, -1.5f), new Vector3(1.5f, -1.5f, -1.5f), new Vector3(-1.5f, -1.5f, -1.5f), new Vector3(1.5f, -1.5f, -1.5f), new Vector3(1.5f, -1.5f, 1.5f), new Vector3(-1.5f, -1.5f, 1.5f), new Vector3(1.5f, -1.5f, 1.5f) };
 		cubeLine = new VectorLine("Line", cubeLinePoints, 1.0f);
 		cubeLine.SetCanvas(VecCanvas);
-		cubeLine.SetColor(Color.green);
+
+		//Determine colour from choices available
+		switch (Random.Range(1,7)) {
+			case 1:
+				cubeLine.SetColor(Color.green);
+				break;
+			case 2:
+				cubeLine.SetColor(Color.blue);
+				break;
+			case 3:
+				cubeLine.SetColor(Color.red);
+				break;
+			case 4:
+				cubeLine.SetColor(Color.yellow);
+				break;
+			case 5:
+				cubeLine.SetColor(Color.magenta);
+				break;
+			case 6:
+				cubeLine.SetColor(Color.cyan);
+				break;
+		};
 		cubeLine.Draw();
 		
 		//Select the line colour

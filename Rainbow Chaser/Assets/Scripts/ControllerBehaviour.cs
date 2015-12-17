@@ -29,6 +29,9 @@ public class ControllerBehaviour : MonoBehaviour {
 		startPosition = ship.transform.position;
 		endPosition = ship.transform.position;
 	}
+
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -150,4 +153,13 @@ public class ControllerBehaviour : MonoBehaviour {
 
 
 	}
+
+
+	void OnCollisionEnter(Collision col) {
+		//Destroys the ship if it collides with a cube
+		if (col.gameObject.name == "Cube(Clone)") {
+			Destroy(ship);
+		}
+	}
+
 }
