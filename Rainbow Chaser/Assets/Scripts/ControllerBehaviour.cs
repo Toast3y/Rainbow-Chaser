@@ -44,6 +44,9 @@ public class ControllerBehaviour : MonoBehaviour {
 		endPosition.y = startPosition.y;
 		endPosition.z = startPosition.z;
 
+		//Get last touch from frame for touch controls
+
+
 		//Animation state trigger based on proximity to endPosition
 		if ((endPosition.x - startPosition.x) < 0.25f && (endPosition.x - startPosition.x) > -0.25f) {
 			animator.SetBool("lerping", false);
@@ -53,7 +56,7 @@ public class ControllerBehaviour : MonoBehaviour {
 		}
 
 
-		if (Input.GetAxis("Mouse ScrollWheel") < 0 && startPosition.x < upperBound){
+		if ((Input.GetAxis("Mouse ScrollWheel") < 0 && startPosition.x < upperBound) /*OR touch control based on taps up or down*/){
 			//Moves ship downwards (to the right)
 
 
@@ -100,7 +103,7 @@ public class ControllerBehaviour : MonoBehaviour {
 
 
 		}
-		else if (Input.GetAxis("Mouse ScrollWheel") > 0 && startPosition.x > lowerBound) {
+		else if ((Input.GetAxis("Mouse ScrollWheel") > 0 && startPosition.x > lowerBound) /*OR touch control based on taps*/) {
 			//Moves ship upwards (to the left)
 			//animator.Play("bankLeft");
 
@@ -174,6 +177,105 @@ public class ControllerBehaviour : MonoBehaviour {
 			//Destroy the ship
 			Destroy(ship);
 			Destroy(col.gameObject);
+		}
+	}
+
+
+
+
+
+
+
+	public void MoveUp() {
+		//Moves ship upwards (to the left)
+		//animator.Play("bankLeft");
+
+		//Keep track of y and z coordinate positions so ship does not wobble off center while lerping
+		startPosition = ship.transform.position;
+		endPosition.y = startPosition.y;
+		endPosition.z = startPosition.z;
+
+		//If changing direction, play the opposing animation
+		if (direction == false) {
+			//animator.Play("bankLeft");
+			direction = true;
+		}
+
+		//If already lerping to another space, adds the resulting jump to the end position.
+		if (lerp == true && endPosition.x < lowerBound) {
+			endPosition.x = lowerBound;
+		}
+		else if (lerp == true && endPosition.x > lowerBound) {
+
+			endPosition.x = endPosition.x - moveSpeed;
+
+			//Ensure resulting value does not exceed lower bound
+			if (endPosition.x < lowerBound) {
+				endPosition.x = lowerBound;
+			}
+		}
+		else {
+
+			lerp = true;
+			endPosition.x = endPosition.x - moveSpeed;
+			//animator.Play("bankLeft");
+			direction = true;
+
+			//Ensure resulting value does not exceed lower bound
+			if (endPosition.x < lowerBound) {
+				endPosition.x = lowerBound;
+			}
+		}
+	}
+
+
+
+
+	public void MoveDown() {
+		//Moves ship downwards (to the right)
+
+		//Keep track of y and z coordinate positions so ship does not wobble off center while lerping
+		startPosition = ship.transform.position;
+		endPosition.y = startPosition.y;
+		endPosition.z = startPosition.z;
+
+		//If changing direction, play the opposing animation
+		if (direction == true) {
+			//animator.Play("bankRight");
+			direction = false;
+		}
+
+
+
+		//If already lerping to another space, adds the resulting jump to the end position
+		if (lerp == true && endPosition.x > upperBound) {
+			endPosition.x = upperBound;
+		}
+		else if (lerp == true && endPosition.x < upperBound) {
+
+			endPosition.x = endPosition.x + moveSpeed;
+
+
+			//Ensure resulting value does not exceed upper bound
+			if (endPosition.x > upperBound) {
+				endPosition.x = upperBound;
+			}
+
+
+		}
+		else {
+			lerp = true;
+			endPosition.x = endPosition.x + moveSpeed;
+			//animator.Play("bankRight");
+			direction = false;
+
+
+			//Ensure resulting value does not exceed upper bound
+			if (endPosition.x > upperBound) {
+				endPosition.x = upperBound;
+			}
+
+
 		}
 	}
 

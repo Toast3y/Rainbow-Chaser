@@ -6,13 +6,13 @@ public class MovementBehaviour : MonoBehaviour {
 
 	//Determines starting game speed
 	public float speed = 5.0f;
-	public float speedOT = 0.025f;
+	public float speedOT = 0.05f;
 	public float cubeFrequencyOT = 1.0f;
 	public int cubesMadeOT = 50;
 	public int difficultyThreshold = 150;
 
 	//Determines frequency of cube spawns
-	public float cubeFrequency = 360.0f;
+	public float cubeFrequency = 500.0f;
 	public float upperBound = 17.0f;
 	public float lowerBound = -7.0f;
 	public GameObject ship;
@@ -20,6 +20,7 @@ public class MovementBehaviour : MonoBehaviour {
 	//public GameObject VectorCanvas;
 
 	private int cubesMade;
+	private int frameCounter = 0;
 	private bool deathState = false;
 	private float deathCounter = 0.0f;
 	
@@ -34,6 +35,9 @@ public class MovementBehaviour : MonoBehaviour {
 		//Move ship to the right according to game speed
 		transform.Translate(0, 0, speed * Time.deltaTime);
 
+		//Count the number of frames passed per second
+		frameCounter++;
+
 		//Check if dead. If dead, transition to main menu after 5 seconds
 		if (deathState) {
 			deathCounter = deathCounter + Time.deltaTime;
@@ -44,7 +48,7 @@ public class MovementBehaviour : MonoBehaviour {
 		}
 
 		//Check to see if another block should be made
-		var framesPassed = Time.frameCount % (cubeFrequency / speed);
+		var framesPassed = frameCounter % (cubeFrequency / speed);
 
 		//If it falls on zero / a certain range, spawn a cube and increase game speed
 		if (framesPassed >= 0.0f && framesPassed <= 1.0f) {
@@ -61,7 +65,7 @@ public class MovementBehaviour : MonoBehaviour {
 
 
 			//If enough cubes have spawned, reduce frequency to increase spawn rate, up to 270
-			if (cubesMade % cubesMadeOT == 0 && cubeFrequency > 270.0f) {
+			if (cubesMade % cubesMadeOT == 0 && cubeFrequency > 350.0f) {
 				cubeFrequency = cubeFrequency - cubeFrequencyOT;
 			}
 
